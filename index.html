@@ -8,7 +8,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/photoswipe@5.2.2/dist/photoswipe.css">
         <link rel="stylesheet" type="text/css" href="./main.css">
-
+        <!--https://lote-arana.vercel.app/-->
     </head>
 
     <body>
@@ -36,9 +36,18 @@
                         <a href="./images/plano.webp" data-pswp-width="1875" data-pswp-height="2500" target="_blank">
                             <img src="./images/plano.webp" alt="" />
                         </a>
+
                     </div>
                     <div class="videos">
-
+                        <div style="margin:auto">
+                            <div style="position:relative;width:100%;aspect-ratio:9/16">
+                                <iframe src="https://www.youtube.com/embed/VbBhmFLclKU" title="YouTube Shorts"
+                                    style="position:absolute;inset:0;width:100%;height:100%;border:0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-right">
@@ -91,7 +100,7 @@
                             		c15.594-3.777,28.056-18.919,35.921-31.317C323.568,266.34,319.334,255.114,309.712,252.351z" />
                                     </g>
                                 </svg>
-                            </span>Contactar por WhatsApp
+                            </span>Consultar por WhatsApp
                         </a>
                     </div>
                 </div>
@@ -103,10 +112,21 @@
             const lightbox = new PhotoSwipeLightbox({
                 gallery: '#my-gallery',
                 children: 'a',
+                clickToCloseNonZoomable: true,
                 pswpModule: () => import('https://unpkg.com/photoswipe'),
             });
 
             lightbox.init();
+
+            // Add event listener to close gallery on .pswp__container click, excluding images
+            document.addEventListener('click', (event) => {
+                const container = event.target.closest('.pswp__container');
+                if (container && !event.target.closest('img')) {
+                    if (lightbox.pswp) {
+                        lightbox.pswp.close();
+                    }
+                }
+            });
         </script>
 
     </body>

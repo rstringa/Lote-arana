@@ -63,6 +63,10 @@ main {
 
     p {
         font-size: 21px;
+
+        @media(max-width:960px) {
+            font-size: 18px;
+        }
     }
 }
 
